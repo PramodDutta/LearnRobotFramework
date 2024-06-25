@@ -11,6 +11,8 @@ Welcome to the **Learning Robot Framework with Selenium** guide! This README pro
 5. [Getting Started](#getting-started)
 6. [Resources](#resources)
 
+
+
 ## Introduction
 
 Robot Framework is a powerful keyword-driven testing framework that integrates seamlessly with Selenium for web automation. This guide will walk you through the essential topics and projects to get you up and running with Robot Framework and Selenium.
@@ -104,6 +106,10 @@ Before you begin, ensure you have the following installed:
    ```sh
    robot my_testcase.robot
    ```
+
+<img width="905" alt="Screenshot 2024-06-25 at 16 05 06" src="https://github.com/PramodDutta/LearnRobotFramework/assets/1409610/7a57ac0a-fe85-402d-9aac-9b19c8321426">
+
+
 
 ## Resources
 
