@@ -1,4 +1,4 @@
-# Learning Robot Framework with Selenium
+# Learning Robot Framework with Selenium | TheTestingAcademy
 
 Welcome to the **Learning Robot Framework with Selenium** guide! This README provides a comprehensive list of topics and projects to help you master automation testing using Robot Framework and Selenium.
 
