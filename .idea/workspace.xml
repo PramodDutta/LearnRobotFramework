@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68d4504d-ebe1-4420-b395-d0cb446fd7a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/gherkin_login_robot.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_basics/Test.robot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/04_locators/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/04_locators/opencart_keyword_syntax.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/LearnRobotFramework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LearnRobotFramework.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +22,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Robot Resource File" />
-        <option value="Python Script" />
         <option value="Robot Test File" />
+        <option value="Python Script" />
+        <option value="Robot Feature File" />
       </list>
     </option>
   </component>
@@ -47,39 +54,69 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Robot Framework.    Open Browser to Katalon Demo App.executor&quot;: &quot;Run&quot;,
-    &quot;Robot Framework.My First Robot Test.executor&quot;: &quot;Run&quot;,
-    &quot;Robot.HelloSelenium.robot.executor&quot;: &quot;Run&quot;,
-    &quot;Robot.HelloSeleniumAdvance.robot.executor&quot;: &quot;Run&quot;,
-    &quot;Robot.HelloWorld.robot.executor&quot;: &quot;Run&quot;,
-    &quot;Robot.gherkin_login.robot.executor&quot;: &quot;Run&quot;,
-    &quot;Robot.katalong_tc.robot.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/promode/PycharmProjects/LearnRobotFramework/02_basics&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Robot Framework.    Open Browser to Katalon Demo App.executor": "Run",
+    "Robot Framework.# Created by promode at 06/06/24\n*** Settings ***\n\n*** Keywords ***\n\n*** Test Cases ***\nMy First Robot Test\n    Log to Console  Hello Robot, How are you?.executor": "Run",
+    "Robot Framework.# Created by promode at 06/06/24\n*** Settings ***\nLibrary     SeleniumLibrary\nTest Teardown    Close browser\n\n*** Variables ***\n${URL}     https://katalon-demo-cura.herokuapp.com/\n${BROWSER}    Chrome\n\n*** Test Cases ***\nVerify Katalon Cura App.\n    Open Browser to Katalon Demo App\n    Press Make Appointment Button\n    Enter username and password\n\n*** Keywords ***\n\nOpen Browser to Katalon Demo App\n    Open Browser     ${URL}    ${BROWSER}\n    Title Should be     CURA Healthcare Service\n\nPress Make Appointment Button\n    Click Element    xpath://a[@id='btn-make-appointment']\n    Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login\n    Element Text Should be    //h2[normalize-space()='Login']    Login\n    Capture Page Screenshot    selenium-screenshot-{index}.png\n\n\nEnter username and password\n    Input Username     John Doe\n    Input Password     ThisIsNotAPassword\n    Click on Submit\n    Capture Page Screenshot    selenium-screenshot-{index}.png\n\n\nInput Username\n    [Arguments]    ${username}\n    Input Text    xpath://input[@id='txt-username']    ${username}\n\nInput Password\n    [Arguments]    ${password}\n    Input Text    xpath://input[@id='txt-password']  ${password}\n\nClick on Submit\n    Click Button    xpath://button[@id='btn-login'].executor": "Run",
+    "Robot Framework.# Created by promode at 06/06/24\n*** Settings ***\nResource    resource.robot\nTest Teardown    Close browser\n\n*** Test Cases ***\nValid Login\n    Given browser is opened to login page\n    When user \"admin@gmail.com\" with password \"password123\"\n    Then verify Error Message\n\n*** Keywords ***\nBrowser is opened to login page\n    Open browser to login page\n\nUser \"${username}\" with password \"${password}\"\n    Input username    ${username}\n    Input password    ${password}\n    Click on Submit\n    Click Button    id:js-login-btn.executor": "Run",
+    "Robot Framework.My First Robot Test.executor": "Run",
+    "Robot Framework.run [My First Robot Test].executor": "Debug",
+    "Robot Framework.run [Valid Login].executor": "Run",
+    "Robot Framework.run [Verify Katalon Cura App.].executor": "Run",
+    "Robot Framework.run [Verify that user is able to register.].executor": "Run",
+    "Robot Framework.run current file.executor": "Run",
+    "Robot Runner.Locators.executor": "Run",
+    "Robot Runner.Test.executor": "Run",
+    "Robot Runner.katalong_tc.executor": "Run",
+    "Robot Runner.openCart.executor": "Run",
+    "Robot.HelloSelenium.robot.executor": "Run",
+    "Robot.HelloSeleniumAdvance.robot.executor": "Run",
+    "Robot.HelloWorld.executor": "Run",
+    "Robot.HelloWorld.robot.executor": "Run",
+    "Robot.gherkin_login.robot.executor": "Run",
+    "Robot.katalong_tc.robot.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/promode/PycharmProjects/LearnRobotFramework/02_basics",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/02_basics" />
     </key>
   </component>
-  <component name="RunManager" selected="Robot.katalong_tc.robot">
-    <configuration name="    Open Browser to Katalon Demo App" type="DEMO_RUN_CONFIGURATION" factoryName="Robot Framework" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value=" -m robot.run  -t &quot;    Open Browser to Katalon Demo App&quot;" />
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="pip install robotframework" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Robot Runner.openCart">
+    <configuration name="# Created by promode at 06/06/24&#10;*** Settings ***&#10;Library     SeleniumLibrary&#10;Test Teardown    Close browser&#10;&#10;*** Variables ***&#10;${URL}     https://katalon-demo-cura.herokuapp.com/&#10;${BROWSER}    Chrome&#10;&#10;*** Test Cases ***&#10;Verify Katalon Cura App.&#10;    Open Browser to Katalon Demo App&#10;    Press Make Appointment Button&#10;    Enter username and password&#10;&#10;*** Keywords ***&#10;&#10;Open Browser to Katalon Demo App&#10;    Open Browser     ${URL}    ${BROWSER}&#10;    Title Should be     CURA Healthcare Service&#10;&#10;Press Make Appointment Button&#10;    Click Element    xpath://a[@id='btn-make-appointment']&#10;    Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login&#10;    Element Text Should be    //h2[normalize-space()='Login']    Login&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Enter username and password&#10;    Input Username     John Doe&#10;    Input Password     ThisIsNotAPassword&#10;    Click on Submit&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Input Username&#10;    [Arguments]    ${username}&#10;    Input Text    xpath://input[@id='txt-username']    ${username}&#10;&#10;Input Password&#10;    [Arguments]    ${password}&#10;    Input Text    xpath://input[@id='txt-password']  ${password}&#10;&#10;Click on Submit&#10;    Click Button    xpath://button[@id='btn-login']" type="DEMO_RUN_CONFIGURATION" factoryName="Robot Framework" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value=" -m robot.run  -t &quot;# Created by promode at 06/06/24 *** Settings *** Library     SeleniumLibrary Test Teardown    Close browser  *** Variables *** ${URL}     https://katalon-demo-cura.herokuapp.com/ ${BROWSER}    Chrome  *** Test Cases *** Verify Katalon Cura App.     Open Browser to Katalon Demo App     Press Make Appointment Button     Enter username and password  *** Keywords ***  Open Browser to Katalon Demo App     Open Browser     ${URL}    ${BROWSER}     Title Should be     CURA Healthcare Service  Press Make Appointment Button     Click Element    xpath://a[@id='btn-make-appointment']     Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login     Element Text Should be    //h2[normalize-space()='Login']    Login     Capture Page Screenshot    selenium-screenshot-{index}.png   Enter username and password     Input Username     John Doe     Input Password     ThisIsNotAPassword     Click on Submit     Capture Page Screenshot    selenium-screenshot-{index}.png   Input Username     [Arguments]    ${username}     Input Text    xpath://input[@id='txt-username']    ${username}  Input Password     [Arguments]    ${password}     Input Text    xpath://input[@id='txt-password']  ${password}  Click on Submit     Click Button    xpath://button[@id='btn-login']&quot;" />
       <option name="INTERPRETER_NAME" value="python" />
       <option name="textField1" value="03_keywords/katalong_tc.robot" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="ENV_PATH" value="$PROJECT_DIR$/venv/bin" />
       <option name="envPATH" value="$PROJECT_DIR$/venv/bin" />
-      <option name="testCaseName" value="    Open Browser to Katalon Demo App" />
+      <option name="testCaseName" value="# Created by promode at 06/06/24&#10;*** Settings ***&#10;Library     SeleniumLibrary&#10;Test Teardown    Close browser&#10;&#10;*** Variables ***&#10;${URL}     https://katalon-demo-cura.herokuapp.com/&#10;${BROWSER}    Chrome&#10;&#10;*** Test Cases ***&#10;Verify Katalon Cura App.&#10;    Open Browser to Katalon Demo App&#10;    Press Make Appointment Button&#10;    Enter username and password&#10;&#10;*** Keywords ***&#10;&#10;Open Browser to Katalon Demo App&#10;    Open Browser     ${URL}    ${BROWSER}&#10;    Title Should be     CURA Healthcare Service&#10;&#10;Press Make Appointment Button&#10;    Click Element    xpath://a[@id='btn-make-appointment']&#10;    Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login&#10;    Element Text Should be    //h2[normalize-space()='Login']    Login&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Enter username and password&#10;    Input Username     John Doe&#10;    Input Password     ThisIsNotAPassword&#10;    Click on Submit&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Input Username&#10;    [Arguments]    ${username}&#10;    Input Text    xpath://input[@id='txt-username']    ${username}&#10;&#10;Input Password&#10;    [Arguments]    ${password}&#10;    Input Text    xpath://input[@id='txt-password']  ${password}&#10;&#10;Click on Submit&#10;    Click Button    xpath://button[@id='btn-login']" />
       <module name="" />
       <method v="2" />
     </configuration>
-    <configuration name="HelloSeleniumAdvance.robot" type="RobotRunConfiguration" factoryName="RobotRunConfiguration" temporary="true">
+    <configuration name="# Created by promode at 06/06/24&#10;*** Settings ***&#10;&#10;*** Keywords ***&#10;&#10;*** Test Cases ***&#10;My First Robot Test&#10;    Log to Console  Hello Robot, How are you?" type="DEMO_RUN_CONFIGURATION" factoryName="Robot Framework" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value=" -m robot.run  -t &quot;# Created by promode at 06/06/24 *** Settings ***  *** Keywords ***  *** Test Cases *** My First Robot Test     Log to Console  Hello Robot, How are you?&quot;" />
+      <option name="INTERPRETER_NAME" value="python" />
+      <option name="textField1" value="01_basics/Test.robot" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="ENV_PATH" value="$PROJECT_DIR$/venv/bin" />
+      <option name="envPATH" value="$PROJECT_DIR$/venv/bin" />
+      <option name="testCaseName" value="# Created by promode at 06/06/24&#10;*** Settings ***&#10;&#10;*** Keywords ***&#10;&#10;*** Test Cases ***&#10;My First Robot Test&#10;    Log to Console  Hello Robot, How are you?" />
+      <module name="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="HelloWorld" type="RobotRunConfiguration" factoryName="RobotRunConfiguration">
       <module name="LearnRobotFramework" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,100 +124,95 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (LearnRobotFramework)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="robot.run" />
-      <option name="PARAMETERS" value="--suite &quot;LearnRobotFramework.02_basics.HelloSeleniumAdvance&quot; ." />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="--suite &quot;LearnRobotFramework.01_basics.HelloWorld&quot; ." />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="true" />
+      <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="HelloSelenium.robot" type="RobotRunConfiguration" factoryName="RobotRunConfiguration" temporary="true">
-      <module name="LearnRobotFramework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="robot.run" />
-      <option name="PARAMETERS" value="--suite &quot;LearnRobotFramework.01_basics.HelloSelenium&quot; ." />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+    <configuration name="Test" type="robot-runner" factoryName="RobotRunConfigurationFactory" temporary="true">
+      <option name="extraArguments" />
+      <option name="logFilePath" />
+      <option name="logTitle" />
+      <option name="outputDirPath" />
+      <option name="outputFilePath" />
+      <option name="pabotArguments" />
+      <option name="reportFilePath" />
+      <option name="reportTitle" />
+      <option name="sdkHomePath" value="$PROJECT_DIR$/.venv/bin/python" />
+      <option name="suitePaths">
+        <list>
+          <option value="$PROJECT_DIR$/01_basics/Test.robot" />
+        </list>
+      </option>
       <method v="2" />
     </configuration>
-    <configuration name="gherkin_login.robot" type="RobotRunConfiguration" factoryName="RobotRunConfiguration" temporary="true">
-      <module name="LearnRobotFramework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="robot.run" />
-      <option name="PARAMETERS" value="--suite &quot;LearnRobotFramework.02_basics.gherkin_login&quot; ." />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+    <configuration name="katalong_tc" type="robot-runner" factoryName="RobotRunConfigurationFactory" temporary="true">
+      <option name="extraArguments" />
+      <option name="logFilePath" />
+      <option name="logTitle" />
+      <option name="outputDirPath" />
+      <option name="outputFilePath" />
+      <option name="pabotArguments" />
+      <option name="reportFilePath" />
+      <option name="reportTitle" />
+      <option name="sdkHomePath" value="$PROJECT_DIR$/.venv/bin/python" />
+      <option name="suitePaths">
+        <list>
+          <option value="$PROJECT_DIR$/03_keywords/katalong_tc.robot" />
+        </list>
+      </option>
       <method v="2" />
     </configuration>
-    <configuration name="katalong_tc.robot" type="RobotRunConfiguration" factoryName="RobotRunConfiguration" temporary="true">
-      <module name="LearnRobotFramework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="robot.run" />
-      <option name="PARAMETERS" value="--suite &quot;LearnRobotFramework.03_keywords.katalong_tc&quot; ." />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+    <configuration name="openCart" type="robot-runner" factoryName="RobotRunConfigurationFactory" temporary="true">
+      <option name="extraArguments" />
+      <option name="logFilePath" />
+      <option name="logTitle" />
+      <option name="outputDirPath" />
+      <option name="outputFilePath" />
+      <option name="pabotArguments" />
+      <option name="reportFilePath" />
+      <option name="reportTitle" />
+      <option name="sdkHomePath" value="$PROJECT_DIR$/.venv/bin/python" />
+      <option name="suitePaths">
+        <list>
+          <option value="$PROJECT_DIR$/04_locators/opencart_keyword_syntax.robot" />
+        </list>
+      </option>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Robot.gherkin_login.robot" />
+      <item itemvalue="Robot.HelloWorld" />
+      <item itemvalue="Robot Framework.# Created by promode at 06/06/24&#10;*** Settings ***&#10;Library     SeleniumLibrary&#10;Test Teardown    Close browser&#10;&#10;*** Variables ***&#10;${URL}     https://katalon-demo-cura.herokuapp.com/&#10;${BROWSER}    Chrome&#10;&#10;*** Test Cases ***&#10;Verify Katalon Cura App.&#10;    Open Browser to Katalon Demo App&#10;    Press Make Appointment Button&#10;    Enter username and password&#10;&#10;*** Keywords ***&#10;&#10;Open Browser to Katalon Demo App&#10;    Open Browser     ${URL}    ${BROWSER}&#10;    Title Should be     CURA Healthcare Service&#10;&#10;Press Make Appointment Button&#10;    Click Element    xpath://a[@id='btn-make-appointment']&#10;    Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login&#10;    Element Text Should be    //h2[normalize-space()='Login']    Login&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Enter username and password&#10;    Input Username     John Doe&#10;    Input Password     ThisIsNotAPassword&#10;    Click on Submit&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Input Username&#10;    [Arguments]    ${username}&#10;    Input Text    xpath://input[@id='txt-username']    ${username}&#10;&#10;Input Password&#10;    [Arguments]    ${password}&#10;    Input Text    xpath://input[@id='txt-password']  ${password}&#10;&#10;Click on Submit&#10;    Click Button    xpath://button[@id='btn-login']" />
+      <item itemvalue="Robot Framework.# Created by promode at 06/06/24&#10;*** Settings ***&#10;&#10;*** Keywords ***&#10;&#10;*** Test Cases ***&#10;My First Robot Test&#10;    Log to Console  Hello Robot, How are you?" />
+      <item itemvalue="Robot Runner.openCart" />
+      <item itemvalue="Robot Runner.katalong_tc" />
+      <item itemvalue="Robot Runner.Test" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Robot.katalong_tc.robot" />
-        <item itemvalue="Robot Framework.    Open Browser to Katalon Demo App" />
-        <item itemvalue="Robot.gherkin_login.robot" />
-        <item itemvalue="Robot.HelloSeleniumAdvance.robot" />
-        <item itemvalue="Robot.HelloSelenium.robot" />
+        <item itemvalue="Robot Runner.openCart" />
+        <item itemvalue="Robot Runner.katalong_tc" />
+        <item itemvalue="Robot Framework.# Created by promode at 06/06/24&#10;*** Settings ***&#10;Library     SeleniumLibrary&#10;Test Teardown    Close browser&#10;&#10;*** Variables ***&#10;${URL}     https://katalon-demo-cura.herokuapp.com/&#10;${BROWSER}    Chrome&#10;&#10;*** Test Cases ***&#10;Verify Katalon Cura App.&#10;    Open Browser to Katalon Demo App&#10;    Press Make Appointment Button&#10;    Enter username and password&#10;&#10;*** Keywords ***&#10;&#10;Open Browser to Katalon Demo App&#10;    Open Browser     ${URL}    ${BROWSER}&#10;    Title Should be     CURA Healthcare Service&#10;&#10;Press Make Appointment Button&#10;    Click Element    xpath://a[@id='btn-make-appointment']&#10;    Wait Until Location Contains  https://katalon-demo-cura.herokuapp.com/profile.php#login&#10;    Element Text Should be    //h2[normalize-space()='Login']    Login&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Enter username and password&#10;    Input Username     John Doe&#10;    Input Password     ThisIsNotAPassword&#10;    Click on Submit&#10;    Capture Page Screenshot    selenium-screenshot-{index}.png&#10;&#10;&#10;Input Username&#10;    [Arguments]    ${username}&#10;    Input Text    xpath://input[@id='txt-username']    ${username}&#10;&#10;Input Password&#10;    [Arguments]    ${password}&#10;    Input Text    xpath://input[@id='txt-password']  ${password}&#10;&#10;Click on Submit&#10;    Click Button    xpath://button[@id='btn-login']" />
+        <item itemvalue="Robot Runner.Test" />
+        <item itemvalue="Robot Framework.# Created by promode at 06/06/24&#10;*** Settings ***&#10;&#10;*** Keywords ***&#10;&#10;*** Test Cases ***&#10;My First Robot Test&#10;    Log to Console  Hello Robot, How are you?" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-48aec45f0201-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17011.127" />
+        <option value="bundled-python-sdk-5b207ade9991-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17890.14" />
       </set>
     </attachedChunks>
   </component>
